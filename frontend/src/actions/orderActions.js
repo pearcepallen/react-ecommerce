@@ -67,7 +67,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
         })
 
         const { 
-            userLogin: {userInfo}
+            userLogin: {userInfo},
         } = getState()
 
         const config = {
@@ -88,7 +88,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
         })
 
 
-    }catch(error){
+    } catch(error){
         dispatch({
             type: ORDER_DETAILS_FAIL,
             payload: error.response && error.response.data.detail

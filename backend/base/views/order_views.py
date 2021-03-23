@@ -11,7 +11,7 @@ from rest_framework import status
 
 
 @api_view(['POST'])
-@permission_classes(['IsAuthenticated'])
+@permission_classes([IsAuthenticated])
 def addOrderItems(request):
     user = request.user
     data = request.data
@@ -32,7 +32,7 @@ def addOrderItems(request):
         )
 
         # (2) Create shipping address
-        shipping = shippingAddress.objects.create(
+        shipping = ShippingAddress.objects.create(
             order=order,
             address=data['shippingAddress']['address'],
             city=data['shippingAddress']['city'],
@@ -54,10 +54,10 @@ def addOrderItems(request):
             )
         
         # (4) Update stock
-        product.countInStock -= item.qty
-        product.save()
+            product.countInStock -= item.qty
+            product.save()
 
 
 
-    serializer = OrderSerializer(order, many=True)
-    return Response(serializer.data)
+        serializer = OrderSerializer(order, many=False)
+        return Response(serializer.data)

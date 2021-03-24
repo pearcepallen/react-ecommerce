@@ -13,7 +13,7 @@ function OrderScreen({ match }) {
     const orderId = match.params.id
     const dispatch = useDispatch()
 
-    const [sdkReady, setSdkReady] = useState(false) // setting sdk state to true until i can fix the sdk paypal client issue
+    const [sdkReady, setSdkReady] = useState(true) // setting sdk state to true until i can fix the sdk paypal client issue
 
     const orderDetails = useSelector(state => state.orderDetails)
     const { order, error, loading } = orderDetails

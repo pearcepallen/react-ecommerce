@@ -13,7 +13,7 @@ function OrderScreen({ match, history }) {
     const orderId = match.params.id
     const dispatch = useDispatch()
 
-    const [sdkReady, setSdkReady] = useState(true) // setting sdk state to true until i can fix the sdk paypal client issue
+    const [sdkReady, setSdkReady] = useState(false)
 
     const orderDetails = useSelector(state => state.orderDetails)
     const { order, error, loading } = orderDetails
@@ -35,14 +35,13 @@ function OrderScreen({ match, history }) {
     const addPayPalScript = () => {
         const script = document.createElement('script')
         script.type = 'text/javascript'
-        script.source = 'https://www.paypal.com/sdk/js?client-id=AS4huUWnuesx9Ypg8K0N1yNBPeSOi7RjcBkcvYuo2hOjXs4YU81E0D1Bkts7LdCVoJWXMB9xg9BTTUZp'
+        script.src = 'https://www.paypal.com/sdk/js?client-id=AS4huUWnuesx9Ypg8K0N1yNBPeSOi7RjcBkcvYuo2hOjXs4YU81E0D1Bkts7LdCVoJWXMB9xg9BTTUZp'
         script.async = true
         script.onload = () => {
             setSdkReady(true)
         }
         document.body.appendChild(script)
     }
-
     useEffect(() => {
         if(!userInfo) {
             history.push('/login')

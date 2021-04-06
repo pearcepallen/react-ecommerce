@@ -120,12 +120,25 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'proshop',
+        'USER': 'postgres',
+        'PASSWORD': 'FISHfiDEAD247',
+        'HOST': 'localhost',
+        'PORT': '5432'
     }
 }
+
+
 
 
 # Password validation
@@ -169,7 +182,7 @@ MEDIA_URL = '/images/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
-    BASE_DIR / 'frontend/build/static'
+    BASE_DIR / 'frontend/build/static' 
 ]
 
 MEDIA_ROOT = 'static/images'

@@ -131,9 +131,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'proshop',
-        'USER': 'postgres',
+        'USER': 'pearcepallen',
         'PASSWORD': 'FISHfiDEAD247',
-        'HOST': 'localhost',
+        'HOST': 'proshop-identifier.cpjeoox4ofgz.us-east-2.rds.amazonaws.com',
         'PORT': '5432'
     }
 }

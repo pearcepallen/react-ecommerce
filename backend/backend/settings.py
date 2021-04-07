@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'corsheaders',
+    'storages',
     
     'base.apps.BaseConfig',
 ]
@@ -189,3 +190,14 @@ MEDIA_ROOT = 'static/images'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+AWS_QUERYSTRING_AUTH = False
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# Region name along with virtual addressing was needed because of regional access signature issues
+AWS_S3_REGION_NAME = 'us-east-2'
+AWS_S3_ADDRESSING_STYLE = "virtual"
+
+AWS_ACCESS_KEY_ID = 'AKIA3ELDIL4DTAT6VIIS'
+AWS_SECRET_ACCESS_KEY = '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'
+
+AWS_STORAGE_BUCKET_NAME = 'proshop-bucket162'

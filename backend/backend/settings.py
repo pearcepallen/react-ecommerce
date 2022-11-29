@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ej1&c*&gzg+s3z5+3!ma+569yt66kn+y@&!u5zqf$li!*ob9p2'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'storages',
+    'cloudinary',
+    'cloudinary_storage',
     
     'base.apps.BaseConfig',
 ]
@@ -129,16 +131,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'proshop',
-        'USER': 'pearcepallen',
-        'PASSWORD': os.environ.get('DB_PASS'),
-        'HOST': 'proshop-identifier.cpjeoox4ofgz.us-east-2.rds.amazonaws.com',
-        'PORT': '5432'
-    }
-}
+
+import dj_database_url
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+
 
 
 
@@ -192,18 +189,8 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-AWS_QUERYSTRING_AUTH = False
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-# Region name along with virtual addressing was needed because of regional access signature issues
-AWS_S3_REGION_NAME = 'us-east-2'
-AWS_S3_ADDRESSING_STYLE = "virtual"
-
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-
-AWS_STORAGE_BUCKET_NAME = 'proshop-bucket162'
-
+CLOUDINARY_URL = os.environ.get('CLOUDINARY_CLOUD_NAME')
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 if os.getcwd() == '/app':
     DEBUG = False

@@ -12,7 +12,7 @@ import { PRODUCT_CREATE_REVIEW_REQUEST, PRODUCT_CREATE_REVIEW_RESET } from '../c
 function ProductScreen({ match, history }) {
     const [qty, setQty] = useState(1)
     const [rating, setRating] = useState(0)
-    const [comment, setComment] = useState('1')
+    const [comment, setComment] = useState('')
 
     const dispatch = useDispatch()
 
